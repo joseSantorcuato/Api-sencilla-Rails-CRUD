@@ -1,0 +1,308 @@
+  [1m[35m (42.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (20.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8177525119173552975);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateProfesores (20170319170711)
+  [1m[35m (6.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (17.9ms)[0m  [1m[35mCREATE TABLE "profesores" ("id" serial primary key, "nombre" character varying, "disciplina" text, "titulo" character varying, "fecha_nac" date, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170319170711"]]
+  [1m[35m (15.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2017-03-19 17:08:52 UTC], ["updated_at", 2017-03-19 17:08:52 UTC]]
+  [1m[35m (14.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (4.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(8177525119173552975)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/profesores" for 127.0.0.1 at 2017-03-19 14:09:43 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProfesoresController#index as HTML
+  Rendering profesores/index.html.erb within layouts/application
+  [1m[36mProfesore Load (10.3ms)[0m  [1m[34mSELECT "profesores".* FROM "profesores"[0m
+  Rendered profesores/index.html.erb within layouts/application (60.0ms)
+Completed 200 OK in 1983ms (Views: 1843.5ms | ActiveRecord: 17.4ms)
+
+
+Started GET "/profesores/new" for 127.0.0.1 at 2017-03-19 14:09:53 -0300
+Processing by ProfesoresController#new as HTML
+  Rendering profesores/new.html.erb within layouts/application
+  Rendered profesores/_form.html.erb (165.4ms)
+  Rendered profesores/new.html.erb within layouts/application (170.0ms)
+Completed 200 OK in 560ms (Views: 400.7ms | ActiveRecord: 22.0ms)
+
+
+Started POST "/profesores" for 127.0.0.1 at 2017-03-19 14:10:47 -0300
+Processing by ProfesoresController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"qKjsw0EQPIYN+wZ07nbOtNLivHqWJfItTl/FN3Vs4SaRsOZ5GCKMYmijGBi3BFlSaKgExZJkE7dQF/mUpcd3FA==", "profesore"=>{"nombre"=>"José Santorcuato", "disciplina"=>"Ingeniería", "titulo"=>"Profesor/ingeniero", "fecha_nac(1i)"=>"2017", "fecha_nac(2i)"=>"3", "fecha_nac(3i)"=>"19"}, "commit"=>"Create Profesore"}
+  [1m[35m (23.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (6.7ms)[0m  [1m[32mINSERT INTO "profesores" ("nombre", "disciplina", "titulo", "fecha_nac", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["nombre", "José Santorcuato"], ["disciplina", "Ingeniería"], ["titulo", "Profesor/ingeniero"], ["fecha_nac", Sun, 19 Mar 2017], ["created_at", 2017-03-19 17:10:47 UTC], ["updated_at", 2017-03-19 17:10:47 UTC]]
+  [1m[35m (27.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/profesores/1
+Completed 302 Found in 81ms (ActiveRecord: 57.4ms)
+
+
+Started GET "/profesores/1" for 127.0.0.1 at 2017-03-19 14:10:47 -0300
+Processing by ProfesoresController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProfesore Load (0.9ms)[0m  [1m[34mSELECT  "profesores".* FROM "profesores" WHERE "profesores"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering profesores/show.html.erb within layouts/application
+  Rendered profesores/show.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 199ms (Views: 164.3ms | ActiveRecord: 9.3ms)
+
+
+Started GET "/profesores" for 127.0.0.1 at 2017-03-19 14:10:51 -0300
+Processing by ProfesoresController#index as HTML
+  Rendering profesores/index.html.erb within layouts/application
+  [1m[36mProfesore Load (6.8ms)[0m  [1m[34mSELECT "profesores".* FROM "profesores"[0m
+  Rendered profesores/index.html.erb within layouts/application (18.4ms)
+Completed 200 OK in 222ms (Views: 212.9ms | ActiveRecord: 6.8ms)
+
+
+Started GET "/profesores/new" for 127.0.0.1 at 2017-03-19 14:11:27 -0300
+Processing by ProfesoresController#new as HTML
+  Rendering profesores/new.html.erb within layouts/application
+  Rendered profesores/_form.html.erb (41.1ms)
+  Rendered profesores/new.html.erb within layouts/application (48.6ms)
+Completed 200 OK in 255ms (Views: 245.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/profesores" for 127.0.0.1 at 2017-03-19 14:29:14 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProfesoresController#index as HTML
+  Rendering profesores/index.html.erb within layouts/application
+  [1m[36mProfesore Load (1.3ms)[0m  [1m[34mSELECT "profesores".* FROM "profesores"[0m
+  Rendered profesores/index.html.erb within layouts/application (106.1ms)
+Completed 200 OK in 1331ms (Views: 1192.8ms | ActiveRecord: 18.8ms)
+
+
+Started GET "/profesores/new" for 127.0.0.1 at 2017-03-19 14:29:20 -0300
+Processing by ProfesoresController#new as HTML
+  Rendering profesores/new.html.erb within layouts/application
+  Rendered profesores/_form.html.erb (122.5ms)
+  Rendered profesores/new.html.erb within layouts/application (132.8ms)
+Completed 500 Internal Server Error in 150ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `-' for :fecha_nac:Symbol):
+    28: 
+    29:   <div class="field">
+    30:     <%= f.label :fecha_nac %>
+    31:     <%= f.date_select :fecha_nac - 100%>
+    32:   </div>
+    33: 
+    34:   <div class="actions">
+  
+app/views/profesores/_form.html.erb:31:in `block in _app_views_profesores__form_html_erb__896554198987221095_70147764698020'
+app/views/profesores/_form.html.erb:1:in `_app_views_profesores__form_html_erb__896554198987221095_70147764698020'
+app/views/profesores/new.html.erb:3:in `_app_views_profesores_new_html_erb___1969980893952309127_70147764396320'
+  Rendering /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (48.5ms)
+  Rendering /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (49.0ms)
+  Rendering /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.1ms)
+  Rendered /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (252.6ms)
+Started GET "/profesores/new" for 127.0.0.1 at 2017-03-19 14:29:47 -0300
+Processing by ProfesoresController#new as HTML
+  Rendering profesores/new.html.erb within layouts/application
+  Rendered profesores/_form.html.erb (40.9ms)
+  Rendered profesores/new.html.erb within layouts/application (44.2ms)
+Completed 200 OK in 179ms (Views: 175.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/profesores/new" for 127.0.0.1 at 2017-03-19 14:31:07 -0300
+Processing by ProfesoresController#new as HTML
+  Rendering profesores/new.html.erb within layouts/application
+  Rendered profesores/_form.html.erb (2.6ms)
+  Rendered profesores/new.html.erb within layouts/application (27.3ms)
+Completed 500 Internal Server Error in 56ms (ActiveRecord: 0.0ms)
+
+
+  
+SyntaxError (/home/hackingvirtual/Proyectos/profesores/app/views/profesores/_form.html.erb:31: syntax error, unexpected ':', expecting ')'
+d=( f.date_select :fecha_nac :start_year => 1900);@output_bu
+                              ^):
+  
+app/views/profesores/_form.html.erb:31: syntax error, unexpected ':', expecting ')'
+app/views/profesores/new.html.erb:3:in `_app_views_profesores_new_html_erb___1969980893952309127_70147687626980'
+  Rendering /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (57.6ms)
+  Rendering /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (15.0ms)
+  Rendering /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (198.9ms)
+Started GET "/profesores/new" for 127.0.0.1 at 2017-03-19 14:31:21 -0300
+Processing by ProfesoresController#new as HTML
+  Rendering profesores/new.html.erb within layouts/application
+  Rendered profesores/_form.html.erb (47.2ms)
+  Rendered profesores/new.html.erb within layouts/application (58.7ms)
+Completed 200 OK in 261ms (Views: 258.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/profesores/new" for 127.0.0.1 at 2017-03-19 14:33:11 -0300
+Processing by ProfesoresController#new as HTML
+  Rendering profesores/new.html.erb within layouts/application
+  Rendered profesores/_form.html.erb (2.6ms)
+  Rendered profesores/new.html.erb within layouts/application (5.6ms)
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.0ms)
+
+
+  
+SyntaxError (/home/hackingvirtual/Proyectos/profesores/app/views/profesores/_form.html.erb:31: syntax error, unexpected ',', expecting ')'
+d=( f.date_select (:fecha_nac,:start_year => 1990,:end_year 
+                              ^
+/home/hackingvirtual/Proyectos/profesores/app/views/profesores/_form.html.erb:39: syntax error, unexpected keyword_ensure, expecting end-of-input
+          ensure
+                ^):
+  
+app/views/profesores/_form.html.erb:31: syntax error, unexpected ',', expecting ')'
+app/views/profesores/_form.html.erb:39: syntax error, unexpected keyword_ensure, expecting end-of-input
+app/views/profesores/new.html.erb:3:in `_app_views_profesores_new_html_erb___1969980893952309127_70147792558220'
+  Rendering /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (54.2ms)
+  Rendering /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (23.8ms)
+  Rendering /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.2ms)
+  Rendered /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (173.2ms)
+Started GET "/profesores/new" for 127.0.0.1 at 2017-03-19 14:34:01 -0300
+Processing by ProfesoresController#new as HTML
+  Rendering profesores/new.html.erb within layouts/application
+  Rendered profesores/_form.html.erb (2.4ms)
+  Rendered profesores/new.html.erb within layouts/application (11.8ms)
+Completed 500 Internal Server Error in 29ms (ActiveRecord: 0.0ms)
+
+
+  
+SyntaxError (/home/hackingvirtual/Proyectos/profesores/app/views/profesores/_form.html.erb:31: syntax error, unexpected '(', expecting ')'
+d=( f.date_select :fecha_nac (:date,:start_year => 1990,:end
+                              ^
+/home/hackingvirtual/Proyectos/profesores/app/views/profesores/_form.html.erb:39: syntax error, unexpected keyword_ensure, expecting end-of-input
+          ensure
+                ^):
+  
+app/views/profesores/_form.html.erb:31: syntax error, unexpected '(', expecting ')'
+app/views/profesores/_form.html.erb:39: syntax error, unexpected keyword_ensure, expecting end-of-input
+app/views/profesores/new.html.erb:3:in `_app_views_profesores_new_html_erb___1969980893952309127_70147855937300'
+  Rendering /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (35.1ms)
+  Rendering /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (21.4ms)
+  Rendering /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.1ms)
+  Rendered /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (123.0ms)
+Started GET "/profesores/new" for 127.0.0.1 at 2017-03-19 14:34:22 -0300
+Processing by ProfesoresController#new as HTML
+  Rendering profesores/new.html.erb within layouts/application
+  Rendered profesores/_form.html.erb (2.9ms)
+  Rendered profesores/new.html.erb within layouts/application (5.8ms)
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 0.0ms)
+
+
+  
+SyntaxError (/home/hackingvirtual/Proyectos/profesores/app/views/profesores/_form.html.erb:31: syntax error, unexpected '(', expecting ')'
+d=( f.date_select :fecha_nac (:start_year => 1990,:end_year 
+                              ^
+/home/hackingvirtual/Proyectos/profesores/app/views/profesores/_form.html.erb:39: syntax error, unexpected keyword_ensure, expecting end-of-input
+          ensure
+                ^):
+  
+app/views/profesores/_form.html.erb:31: syntax error, unexpected '(', expecting ')'
+app/views/profesores/_form.html.erb:39: syntax error, unexpected keyword_ensure, expecting end-of-input
+app/views/profesores/new.html.erb:3:in `_app_views_profesores_new_html_erb___1969980893952309127_70147758014980'
+  Rendering /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (40.8ms)
+  Rendering /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (8.4ms)
+  Rendering /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (4.6ms)
+  Rendered /home/hackingvirtual/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (128.6ms)
+Started GET "/profesores/new" for 127.0.0.1 at 2017-03-19 14:35:01 -0300
+Processing by ProfesoresController#new as HTML
+  Rendering profesores/new.html.erb within layouts/application
+  Rendered profesores/_form.html.erb (28.7ms)
+  Rendered profesores/new.html.erb within layouts/application (48.5ms)
+Completed 200 OK in 244ms (Views: 240.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/profesores/new" for 127.0.0.1 at 2017-03-19 14:50:03 -0300
+Processing by ProfesoresController#new as HTML
+  Rendering profesores/new.html.erb within layouts/application
+  Rendered profesores/_form.html.erb (30.9ms)
+  Rendered profesores/new.html.erb within layouts/application (34.2ms)
+Completed 200 OK in 164ms (Views: 161.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/profesores/new" for 127.0.0.1 at 2017-03-19 14:52:53 -0300
+Processing by ProfesoresController#new as HTML
+  Rendering profesores/new.html.erb within layouts/application
+  Rendered profesores/_form.html.erb (29.1ms)
+  Rendered profesores/new.html.erb within layouts/application (33.2ms)
+Completed 200 OK in 186ms (Views: 182.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/profesores/new" for 127.0.0.1 at 2017-03-19 14:59:15 -0300
+Processing by ProfesoresController#new as HTML
+  Rendering profesores/new.html.erb within layouts/application
+  Rendered profesores/_form.html.erb (32.6ms)
+  Rendered profesores/new.html.erb within layouts/application (35.4ms)
+Completed 200 OK in 125ms (Views: 122.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/profesores" for 127.0.0.1 at 2017-03-19 14:59:26 -0300
+Processing by ProfesoresController#index as HTML
+  Rendering profesores/index.html.erb within layouts/application
+  [1m[36mProfesore Load (4.1ms)[0m  [1m[34mSELECT "profesores".* FROM "profesores"[0m
+  Rendered profesores/index.html.erb within layouts/application (11.6ms)
+Completed 200 OK in 157ms (Views: 150.0ms | ActiveRecord: 4.1ms)
+
+
+Started GET "/profesores/new" for 127.0.0.1 at 2017-03-19 15:16:37 -0300
+Processing by ProfesoresController#new as HTML
+  Rendering profesores/new.html.erb within layouts/application
+  Rendered profesores/_form.html.erb (33.6ms)
+  Rendered profesores/new.html.erb within layouts/application (45.2ms)
+Completed 200 OK in 173ms (Views: 171.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/profesores" for 127.0.0.1 at 2017-03-19 15:16:46 -0300
+Processing by ProfesoresController#index as HTML
+  Rendering profesores/index.html.erb within layouts/application
+  [1m[36mProfesore Load (3.8ms)[0m  [1m[34mSELECT "profesores".* FROM "profesores"[0m
+  Rendered profesores/index.html.erb within layouts/application (8.6ms)
+Completed 200 OK in 153ms (Views: 146.6ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/profesores/1/edit" for 127.0.0.1 at 2017-03-19 15:16:48 -0300
+Processing by ProfesoresController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProfesore Load (1.1ms)[0m  [1m[34mSELECT  "profesores".* FROM "profesores" WHERE "profesores"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering profesores/edit.html.erb within layouts/application
+  Rendered profesores/_form.html.erb (38.7ms)
+  Rendered profesores/edit.html.erb within layouts/application (49.5ms)
+Completed 200 OK in 182ms (Views: 158.1ms | ActiveRecord: 11.9ms)
+
+
+Started GET "/profesores/1" for 127.0.0.1 at 2017-03-19 15:16:58 -0300
+Processing by ProfesoresController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProfesore Load (2.1ms)[0m  [1m[34mSELECT  "profesores".* FROM "profesores" WHERE "profesores"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering profesores/show.html.erb within layouts/application
+  Rendered profesores/show.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 155ms (Views: 148.1ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/profesores" for 127.0.0.1 at 2017-03-19 15:17:00 -0300
+Processing by ProfesoresController#index as HTML
+  Rendering profesores/index.html.erb within layouts/application
+  [1m[36mProfesore Load (4.4ms)[0m  [1m[34mSELECT "profesores".* FROM "profesores"[0m
+  Rendered profesores/index.html.erb within layouts/application (8.8ms)
+Completed 200 OK in 153ms (Views: 145.8ms | ActiveRecord: 4.4ms)
+
+
